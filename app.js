@@ -2,15 +2,18 @@
 const chalk = require('chalk')
 const getNotes = require('./notes.js')
 
-const message=  getNotes()
+// const message=  getNotes()
+const command = process.argv[2]
 
-console.log(message)
+if(command=='add') {
+    console.log('Adding note')
+} else {
+    console.log('Note removed')
+}
 
-// console.log(validator.isURL('https://google.com')) //=>true
+// console.log(message)
 
-//npm install chalk@2.4.1
+// console.log(chalk.green.bold.inverse("Success!"))
 
-console.log(chalk.green.bold.inverse("Success!"))
-console.log('hah')
-
-//nodemon ->to get hot reload functionality for node js => ctrl c to exit 
+console.log(process.argv)   //array that contains all the arguments(exec file,file that is running,Arg passed via command line) provided by the command line 
+console.log(process.argv[2])
