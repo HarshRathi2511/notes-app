@@ -1,21 +1,23 @@
-const chalk = require("chalk");
-const { describe } = require("yargs");
-const yargs = require("yargs");
+const chalk = require("chalk")
+const yargs = require("yargs")
 //Yargs gives you:
 // commands and (grouped) options (my-program.js serve --port=5000).
 // a dynamically generated help menu based on your arguments:
-const getNotes = require("./notes.js");
+const getNotes = require("./notes.js")
 
 //Customize yargs version
-yargs.version("1.1.0");
+yargs.version("1.1.0")
+
+
+
 //add,remove,read,list all notes =>COMMANDS
 
 //Create ADD COMMAND
 yargs.command({
   //verify by running node app.js --help
-  command: "add",
-  describe: "Add a new note",
-  handler: function () {
+  command: 'add',
+  describe: 'Add a new note',
+  handler: function () {  //when command executed
     console.log("Adding a new note!");
   }, //a function which will be passed the parsed argv.
 })
@@ -47,4 +49,4 @@ yargs.command({
     }
 })
 
-console.log(yargs.argv); //{ _: [ 'add' ], title: 'Things to fuck', '$0': 'app.js' }
+console.log(yargs.argv)
