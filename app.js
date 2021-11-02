@@ -1,4 +1,5 @@
 const chalk = require("chalk")
+const { demandOption } = require("yargs")
 const yargs = require("yargs")
 //Yargs gives you:
 // commands and (grouped) options (my-program.js serve --port=5000).
@@ -17,8 +18,23 @@ yargs.command({
   //verify by running node app.js --help
   command: 'add',
   describe: 'Add a new note',
-  handler: function () {  //when command executed
-    console.log("Adding a new note!");
+  builder:{ //object declaring the options the command accepts
+
+   title:{ //one of the option
+       describe:'Note title',
+       demandOption: true,  //compulsory to provide the title as an arg
+       type: 'string'
+   },
+
+   body:{ //second option 
+       describe: 'Body for the note',
+       demandOption:true,
+       type:'string'
+   }
+  },
+  handler: function (argv) {  //when command executed
+    console.log('Title: '+argv.title)
+    console.log('Body: '+argv.body)
   }, //a function which will be passed the parsed argv.
 })
 
@@ -49,4 +65,5 @@ yargs.command({
     }
 })
 
-console.log(yargs.argv)
+yargs.parse() //now the cmd line knows to register all the commands
+// console.log(yargs.argv) //without this the app doesn't run
