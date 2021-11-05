@@ -1,5 +1,5 @@
 const chalk = require("chalk")
-const { demandOption } = require("yargs")
+const { demandOption, argv } = require("yargs")
 const yargs = require("yargs")
 //Yargs gives you:
 // commands and (grouped) options (my-program.js serve --port=5000).
@@ -8,8 +8,6 @@ const notesUtil = require("./notes.js") //getting functions of notes.js
 
 //Customize yargs version
 yargs.version("1.1.0")
-
-
 
 //add,remove,read,list all notes =>COMMANDS
 
@@ -41,8 +39,15 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler:function() {
-        console.log('Removing a note !')
+    builder : {
+        title :{
+            describe:'Remove a note',
+            demandOption :true,
+            type: 'string'
+        }
+    },
+    handler:function(argv) {
+        notesUtil.removeNote(argv.title)
     }
 })
 

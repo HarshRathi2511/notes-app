@@ -1,4 +1,5 @@
 const fs = require("fs");
+const chalk = require("chalk");
 
 const getNotes = function () {
   return "Your notes...";
@@ -9,21 +10,42 @@ const addNote = function (title, body) {
   //notes is an array containing objects
 
   const duplicateNotes = notes.filter(function (note) {
-    return note.title ===title;
+    return note.title === title;
   });
-  // === is a strict comparison operator in JS which returns true and false 
+  // === is a strict comparison operator in JS which returns true and false
 
   if (duplicateNotes.length === 0) {
     notes.push({
       title: title,
       body: body,
     });
+
+    console.log(chalk.green.inverse("Note added"));
   } else {
-      console.log('Note title already taken !')
+    console.log(chalk.red.inverse("Note title already taken !"));
   }
 
   console.log(notes);
   saveNotes(notes);
+};
+
+const removeNote = function (title) {
+  const notes = loadNotes(); //array
+
+  const noteToDelete = notes.filter(function (note) {
+    note.title === title;
+  });
+
+  const filteredNotes = notes.filter(function (note) {
+    return note.title !== title;
+  });
+
+  if (notes.length > filteredNotes.length) {
+    console.log(chalk.green.inverse("Note removed"));
+    saveNotes(filteredNotes);
+  } else {
+    console.log(chalk.red.inverse("No note found!"));
+  }
 };
 
 const saveNotes = function (notes) {
@@ -44,4 +66,5 @@ const loadNotes = function () {
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
+  removeNote: removeNote,
 }; //to export more than one function
