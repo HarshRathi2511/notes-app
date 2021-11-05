@@ -1,3 +1,6 @@
+//If the function is a method then we use ES6 method definition syntax 
+//Otherwise use arrow 
+
 const square = function (x) {
   return x * x;
 };
