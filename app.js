@@ -4,7 +4,7 @@ const yargs = require("yargs")
 //Yargs gives you:
 // commands and (grouped) options (my-program.js serve --port=5000).
 // a dynamically generated help menu based on your arguments:
-const getNotes = require("./notes.js")
+const notesUtil = require("./notes.js") //getting functions of notes.js
 
 //Customize yargs version
 yargs.version("1.1.0")
@@ -33,8 +33,7 @@ yargs.command({
    }
   },
   handler: function (argv) {  //when command executed
-    console.log('Title: '+argv.title)
-    console.log('Body: '+argv.body)
+    notesUtil.addNote(argv.title,argv.body)
   }, //a function which will be passed the parsed argv.
 })
 
