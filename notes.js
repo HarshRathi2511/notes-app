@@ -4,10 +4,11 @@ const chalk = require("chalk");
 const addNote = (title, body) => {
   const notes = loadNotes();
   //notes is an array containing objects
-
   //   const duplicateNotes = notes.filter((note) => note.title === title)
   // === is a strict comparison operator in JS which returns true and false
   const duplicateNote = notes.find((note) => note.title === title); //stops once the element is found
+  
+  //debugger to debug on the chrome v8 engine :- node inspect , ctrl c *2  to exit debugging 
 
   if (!duplicateNote) {
     notes.push({
@@ -76,7 +77,6 @@ const loadNotes = () => {
 };
 
 module.exports = {
-  getNotes: getNotes,
   addNote: addNote,
   removeNote: removeNote,
   listNotes: listNotes,
