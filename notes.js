@@ -7,8 +7,8 @@ const addNote = (title, body) => {
   //   const duplicateNotes = notes.filter((note) => note.title === title)
   // === is a strict comparison operator in JS which returns true and false
   const duplicateNote = notes.find((note) => note.title === title); //stops once the element is found
-  
-  //debugger to debug on the chrome v8 engine :- node inspect , ctrl c *2  to exit debugging 
+
+  //debugger to debug on the chrome v8 engine :- node inspect , ctrl c *2  to exit debugging
 
   if (!duplicateNote) {
     notes.push({
@@ -55,9 +55,9 @@ const readNotes = (title) => {
   const loadedNote = notes.find((note) => note.title === title);
   if (loadedNote) {
     console.log(chalk.grey.inverse(loadedNote.title));
-    console.log(loadedNote.body)
+    console.log(loadedNote.body);
   } else {
-     console.log(chalk.red.inverse('No note found having that title')) 
+    console.log(chalk.red.inverse("No note found having that title"));
   }
 };
 
@@ -80,5 +80,5 @@ module.exports = {
   addNote: addNote,
   removeNote: removeNote,
   listNotes: listNotes,
-  readNotes :readNotes,
+  readNotes: readNotes,
 }; //to export more than one function
